@@ -32,13 +32,17 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		return null;
+		String s3 = s1 + s2;
+		return s3;
 	}
 
 	
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
-		return null;
+		if(s.contains("underscores")) {
+			s.replace(' ', '_');
+		}
+		return s;
 	}
 
 	
@@ -46,6 +50,36 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
+		char ln1 = ' ';
+		char ln2 = ' ';
+		char ln3 = ' ';
+		for(int i = 2; i < s1.length(); i++) {
+			if(s1.charAt(i) == ' ') {
+				ln1 = s1.charAt(i+1);
+			}
+		}
+		for(int i = 2; i < s2.length(); i++) {
+			if(s2.charAt(i) == ' ') {
+				ln2 = s2.charAt(i+1);
+			}
+		}
+		for(int i = 2; i < s3.length(); i++) {
+			if(s3.charAt(i) == ' ') {
+				ln3 = s3.charAt(i+1);
+			}
+		}
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		for(int i = 0; i < alphabet.length(); i++) {
+			if(alphabet.charAt(i) == ln1) {
+				return s1;
+			}
+			else if(alphabet.charAt(i) == ln2) {
+				return s2;
+			}
+			else if(alphabet.charAt(i) == ln3) {
+				return s3;
+			}
+		}
 		return null;
 	}
 	
@@ -58,6 +92,9 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
+		for(int i = 0; i < s.length()-1; i++) {
+	
+		}
 		return 0;
 	}
 
