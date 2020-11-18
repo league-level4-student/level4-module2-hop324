@@ -92,14 +92,19 @@ public class StringMethods {
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		for(int i = 0; i < s.length()-1; i++) {
-	
+		int returner = 0;
+		for(int i = 0; i < s.length()-substring.length(); i++) {
+			String checker = s.substring(0, substring.length());
+			if(checker.equals(substring)) {
+				returner++;
+			}
 		}
-		return 0;
+		return returner;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
+	//	Utilities.encrypt();
 		return null;
 	}
 
@@ -112,7 +117,14 @@ public class StringMethods {
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		int returner = 0;
+		for(int i = 0; i < s.length()-substring.length(); i++) {
+			String checker = s.substring(0, substring.length());
+			if(checker.equals(substring + " ")) {
+				returner++;
+			}
+		}
+		return returner;
 	}
 	
 
@@ -120,7 +132,21 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int first = 0;
+		int second = 0;
+		for(int i = 0; i < s.length()-substring.length();i++) {
+			if(s.substring(i,  i+substring.length()).equals(substring)){
+				first = substring.length()+i;
+				break;
+			}
+		}
+		for(int i = s.length()-substring.length(); i > 0; i--) {
+			if(s.substring(i,  i+substring.length()).equals(substring)) {
+				second = i;
+			}
+		}
+		int returner = second-first;
+		return returner;
 	}
 
 
@@ -128,6 +154,15 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
+		boolean checker = true;
+	for(int i = 0; i < s.length(); i++) {
+		if(s.charAt(i) == s.charAt(s.length()-i-1) && checker) {
+			checker = true;
+		}
+		else {
+			return false;
+		}
+	}
 		return true;
 	}
 	
