@@ -32,15 +32,24 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		String s3 = s1 + s2;
-		return s3;
+		if(s1.length() > s2.length()) {
+			return s1;
+		}
+		else if(s2.length() > s1.length()) {
+			return s2;
+		}
+		else {
+			return s1;
+		}
 	}
 
 	
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
+		String boi = "";
 		if(s.contains("underscores")) {
-			s.replace(' ', '_');
+			boi = s.replace(' ', '_');
+			return boi;
 		}
 		return s;
 	}
@@ -56,20 +65,23 @@ public class StringMethods {
 		for(int i = 2; i < s1.length(); i++) {
 			if(s1.charAt(i) == ' ') {
 				ln1 = s1.charAt(i+1);
+				break;
 			}
 		}
 		for(int i = 2; i < s2.length(); i++) {
 			if(s2.charAt(i) == ' ') {
 				ln2 = s2.charAt(i+1);
+				break;
 			}
 		}
 		for(int i = 2; i < s3.length(); i++) {
 			if(s3.charAt(i) == ' ') {
 				ln3 = s3.charAt(i+1);
+				break;
 			}
 		}
-		String alphabet = "abcdefghijklmnopqrstuvwxyz";
-		for(int i = 0; i < alphabet.length(); i++) {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		for(int i = 0; i < alphabet.length()-1; i++) {
 			if(alphabet.charAt(i) == ln1) {
 				return s1;
 			}
@@ -93,9 +105,14 @@ public class StringMethods {
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
 		int returner = 0;
-		for(int i = 0; i < s.length()-substring.length(); i++) {
-			String checker = s.substring(0, substring.length());
+		System.out.println(s);
+		System.out.println(substring);
+		for(int i = 0; i < s.length(); i++) {
+			System.out.println(s.substring(i, substring.length()+i));
+			System.out.println(returner);
+			String checker = s.substring(i, substring.length()+i);
 			if(checker.equals(substring)) {
+				i+=substring.length();
 				returner++;
 			}
 		}
