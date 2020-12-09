@@ -187,16 +187,23 @@ public class StringMethods {
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
 		boolean checker = true;
-		s.replaceAll("?", " ");
-		s.replaceAll(",", " ");
-		s.replaceAll(".", " ");
-		s.replaceAll(":", " ");
-		System.out.println(s);
-	for(int i = 0; i < s.length(); i++) {
-		for(int j = s.length(); j > 0; j--) {
-			System.out.println(s.charAt(i));
-			System.out.println(s.charAt(j-1));
-			if(s.charAt(i) == s.charAt(j-1)) {
+		String newStr = "";
+		
+		for(int l = 0; l < s.length(); l++) {
+			if(Character.isLetter(s.charAt(l))) {
+				newStr+= s.charAt(l);
+			}
+			else {
+				
+			}
+		}
+		newStr = newStr.toLowerCase();
+		System.out.println(newStr);
+	for(int i = 0; i < newStr.length(); i++) {
+		for(int j = newStr.length(); j > 0; j--) {
+			System.out.println(newStr.charAt(i));
+			System.out.println(newStr.charAt(j-1));
+			if(newStr.charAt(i) == newStr.charAt(j-1)) {
 				System.out.println("bababooey");
 				i++;
 			}
