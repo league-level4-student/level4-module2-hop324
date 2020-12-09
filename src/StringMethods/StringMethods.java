@@ -98,22 +98,31 @@ public class StringMethods {
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int collector = 0;
+		String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		for(int i = 0; i < s.length(); i++) {
+			for(int j = 0; j < numbers.length; j++) {
+			if(s.charAt(i) == numbers[j].charAt(0)) {
+				collector += Integer.parseInt(numbers[j]);
+			}
+			}
+		}
+		return collector;
 	}
 	
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
 		int returner = 0;
-		System.out.println(s);
-		System.out.println(substring);
+		//System.out.println(substring);
 		for(int i = 0; i < s.length(); i++) {
-			System.out.println(s.substring(i, substring.length()+i));
-			System.out.println(returner);
-			String checker = s.substring(i, substring.length()+i);
-			if(checker.equals(substring)) {
-				i+=substring.length();
-				returner++;
+			if(substring.length()+i-1 < s.length()) {
+				String checker = s.substring(i, substring.length()+i);
+				//System.out.println(substring);
+				if(checker.equals(substring)) {
+					//i+=substring.length();
+					returner++;
+				}
 			}
 		}
 		return returner;
@@ -121,13 +130,14 @@ public class StringMethods {
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-	//	Utilities.encrypt();
-		return null;
+		Utilities.encrypt(s.getBytes(), (byte)key);
+		return Utilities.encrypt(s.getBytes(), (byte)key);
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		Utilities.decrypt(s, (byte)key);
+		return Utilities.decrypt(s, (byte)key);
 	}
 
 
@@ -135,10 +145,12 @@ public class StringMethods {
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
 		int returner = 0;
-		for(int i = 0; i < s.length()-substring.length(); i++) {
-			String checker = s.substring(0, substring.length());
-			if(checker.equals(substring + " ")) {
-				returner++;
+		for(int i = 0; i < s.length(); i++) {
+			if(substring.length()+i < s.length()) {
+				String checker = s.substring(i, substring.length()+i+1);
+				if(checker.equals(substring + " ")) {
+					returner++;
+				}
 			}
 		}
 		return returner;
@@ -151,15 +163,18 @@ public class StringMethods {
 	public static int distance(String s, String substring) {
 		int first = 0;
 		int second = 0;
-		for(int i = 0; i < s.length()-substring.length();i++) {
-			if(s.substring(i,  i+substring.length()).equals(substring)){
-				first = substring.length()+i;
-				break;
-			}
-		}
-		for(int i = s.length()-substring.length(); i > 0; i--) {
-			if(s.substring(i,  i+substring.length()).equals(substring)) {
-				second = i;
+		boolean check = false;
+		for(int i = 0; i < s.length();i++) {
+			if(substring.length()+i+1 < s.length()) {
+				if(s.substring(i,  i+substring.length()).equals(substring) ){
+					if(!check) {
+						first = substring.length()+i;
+						check = true;
+					}
+					else{
+						second = substring.length()+i;
+					}
+				}
 			}
 		}
 		int returner = second-first;
@@ -172,15 +187,26 @@ public class StringMethods {
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
 		boolean checker = true;
+		s.replaceAll("?", " ");
+		s.replaceAll(",", " ");
+		s.replaceAll(".", " ");
+		s.replaceAll(":", " ");
+		System.out.println(s);
 	for(int i = 0; i < s.length(); i++) {
-		if(s.charAt(i) == s.charAt(s.length()-i-1) && checker) {
-			checker = true;
-		}
-		else {
-			return false;
+		for(int j = s.length(); j > 0; j--) {
+			System.out.println(s.charAt(i));
+			System.out.println(s.charAt(j-1));
+			if(s.charAt(i) == s.charAt(j-1)) {
+				System.out.println("bababooey");
+				i++;
+			}
+			else {
+				System.out.println("nightmare");
+				return false;
+			}
 		}
 	}
-		return true;
+	return true;
 	}
 	
 }
