@@ -165,19 +165,25 @@ public class StringMethods {
 		int second = 0;
 		boolean check = false;
 		for(int i = 0; i < s.length();i++) {
-			if(substring.length()+i+1 < s.length()) {
+			if(substring.length()+i-1 < s.length()) {
 				if(s.substring(i,  i+substring.length()).equals(substring) ){
+					System.out.println(i);
 					if(!check) {
 						first = substring.length()+i;
 						check = true;
+						//System.out.println("Mark 1: " + first);
 					}
 					else{
-						second = substring.length()+i;
+						second = i;
+						//System.out.println("Mark etc: " + second);
 					}
 				}
 			}
 		}
+		System.out.println(first);
+		System.out.println(second);
 		int returner = second-first;
+		//System.out.println(returner);
 		return returner;
 	}
 
@@ -197,18 +203,14 @@ public class StringMethods {
 				
 			}
 		}
-		newStr = newStr.toLowerCase();
-		System.out.println(newStr);
+		newStr = newStr.toLowerCase();;
 	for(int i = 0; i < newStr.length(); i++) {
 		for(int j = newStr.length(); j > 0; j--) {
-			System.out.println(newStr.charAt(i));
-			System.out.println(newStr.charAt(j-1));
 			if(newStr.charAt(i) == newStr.charAt(j-1)) {
-				System.out.println("bababooey");
 				i++;
 			}
 			else {
-				System.out.println("nightmare");
+
 				return false;
 			}
 		}
